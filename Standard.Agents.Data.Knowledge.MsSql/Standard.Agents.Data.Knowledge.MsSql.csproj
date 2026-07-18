@@ -1,0 +1,53 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <NoWarn>$(NoWarn);CS1591</NoWarn>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <PackageId>Standard.Agents.Data.Knowledge.MsSql</PackageId>
+
+    <!-- The Standard's release format is v1.2.3.4 — model . service/routine . fix/config
+         . automated build. Deliberately NOT semver. First release: tracks SPEC.md v0.1
+         (draft), so segment 1 stays 0 until the spec settles. -->
+    <Version>0.1.0.0</Version>
+
+    <Authors>Hassan Habib</Authors>
+    <Company>Hassan Habib</Company>
+    <Product>The Standard for Agents — SQL Server Knowledge</Product>
+    <Title>The Standard for Agents — SQL Server Knowledge</Title>
+
+    <Description>
+      A SQL Server knowledge source (the Data nature) for Standard.Agents. Grounds an agent on
+      a SQL Server table using full-text search — the same IKnowledgeBroker seam as the built-in
+      file knowledge, swapped in with .UseKnowledgeMsSql(...). The core Standard.Agents package
+      stays dependency-free; this package brings Microsoft.Data.SqlClient.
+    </Description>
+
+    <PackageIcon>the-standard-agent-icon.png</PackageIcon>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+
+    <PackageProjectUrl>https://github.com/hassanhabib/Standard.Agents.Data.Knowledge.MsSql</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/hassanhabib/Standard.Agents.Data.Knowledge.MsSql</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>agent;ai;llm;knowledge;rag;sqlserver;mssql;full-text-search;the-standard;standard-agents;data</PackageTags>
+    <Copyright>Copyright (c) Hassan Habib. All rights reserved.</Copyright>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Standard.Agents" Version="0.8.0" />
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="5.2.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\assets\the-standard-agent-icon.png" Pack="true" PackagePath="\" Visible="false" />
+    <None Include="..\README.md" Pack="true" PackagePath="\" Visible="false" />
+    <None Include="..\LICENSE.txt" Pack="true" PackagePath="\" Visible="false" />
+  </ItemGroup>
+
+</Project>
