@@ -1,0 +1,27 @@
+name: Publish
+
+# Publishes the package to NuGet when a version tag (v*) is pushed, or on demand from
+# the Actions tab. Needs a repo secret NUGET_API_KEY with push rights over Standard.Agents*.
+on:
+  push:
+    tags: [ 'v*' ]
+  workflow_dispatch:
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Pulling Code
+      uses: actions/checkout@v4
+
+    - name: Installing .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 10.0.x
+
+    - name: Packing
+      run: dotnet pack Standard.Agents.Data.Knowledge.MsSql/Standard.Agents.Data.Knowledge.MsSql.csproj --configuration Release --output out
+
+    - name: Publishing To NuGet
+      run: dotnet nuget push "out/*.nupkg" --api-key "${{ secrets.NUGET_API_KEY }}" --source https://api.nuget.org/v3/index.json --skip-duplicate
